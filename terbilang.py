@@ -1,8 +1,15 @@
 def find_first(predicate, items):
+    '''
+    mencari item pertama yang memenuhi persyaratan predicate
+
+    :param predicate: persyaratan yang harus dipenuhi
+    :param items: list items
+    :return: tuple (pos, item) jika tidak ditemukan (-1, None)
+    '''
     for i, item in enumerate(items):
         if predicate(item):
             return i, item
-    return None
+    return (-1, None)
 
 
 def terbilang(angka):
@@ -21,10 +28,10 @@ def terbilang(angka):
     elif 11 <= angka <= 19:
         return "{} belas".format(satuan[angka % 10]).replace("satu belas", "sebelas")
     else:
-        batas = find_first(lambda x: angka >= x[0], suffix)
+        pos, batas = find_first(lambda x: angka >= x[0], suffix)
         if batas != None:
-            return "{} {} {}".format(terbilang(int(angka / batas[1][0])), suffix[batas[0]][1],
-                                     terbilang(angka % batas[1][0]) if angka % batas[1][0] > 0 else "")\
+            return "{} {} {}".format(terbilang(int(angka / batas[0])), suffix[pos][1],
+                                     terbilang(angka % batas[0]) if angka % batas[0] > 0 else "")\
                 .replace("satu puluh", "sepuluh")\
                 .replace("satu ratus", "seratus")\
                 .replace("satu ribu", "seribu")
