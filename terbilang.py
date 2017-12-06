@@ -1,11 +1,11 @@
 def find_first(predicate, items):
-    '''
+    """
     mencari item pertama yang memenuhi persyaratan predicate
 
     :param predicate: persyaratan yang harus dipenuhi
     :param items: list items
     :return: tuple (pos, item) jika tidak ditemukan (-1, None)
-    '''
+    """
     for i, item in enumerate(items):
         if predicate(item):
             return i, item
