@@ -9,7 +9,7 @@ def find_first(predicate, items):
     for i, item in enumerate(items):
         if predicate(item):
             return i, item
-    return (-1, None)
+    return -1, None
 
 
 def terbilang(angka):
