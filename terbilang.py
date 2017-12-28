@@ -1,3 +1,12 @@
+satuan = ('nol', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan')
+suffix = ((1000000000000, "trilyun"),
+          (1000000000, "milyar"),
+          (1000000, "juta"),
+          (1000, "ribu"),
+          (100, "ratus"),
+          (10, "puluh"))
+
+
 def find_first(predicate, items):
     """
     mencari item pertama yang memenuhi persyaratan predicate
@@ -13,14 +22,6 @@ def find_first(predicate, items):
 
 
 def terbilang(angka):
-    satuan = ('nol', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan')
-    suffix = ((1000000000000, "trilyun"),
-              (1000000000, "milyar"),
-              (1000000, "juta"),
-              (1000, "ribu"),
-              (100, "ratus"),
-              (10, "puluh"))
-
     if angka < 0:
         return "negatif " + terbilang(abs(angka))
     elif 0 <= angka <= 9:
