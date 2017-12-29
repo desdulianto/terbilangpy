@@ -21,16 +21,26 @@ def find_first(predicate, items):
 
 def terbilang(angka):
     """
-    mengembalikan string terbilang dari angka
+    mengembalikan string terbilang dari integer angka
+
+    >>> terbilang(10)
+    'sepuluh'
+
+    >>> terbilang(0)
+    'nol'
+
+    >>> terbilang(12759247)
+    'dua belas juta tujuh ratus lima puluh sembilan ribu dua ratus empat puluh tujuh'
+
     :param angka: integer input untuk menghasilkan terbilang
     :return: string terbilang
     """
     if angka < 0:
-        return "negatif " + terbilang(abs(angka))
+        return "negatif " + terbilang(abs(angka)).strip()
     elif 0 <= angka <= 9:
         return satuan[int(angka)]
     elif 11 <= angka <= 19:
-        return "{} belas".format(satuan[angka % 10]).replace("satu belas", "sebelas")
+        return "{} belas".format(satuan[angka % 10]).replace("satu belas", "sebelas").strip()
     else:
         pos, batas = find_first(lambda x: angka >= x[1][0], enumerate(suffix))
         if batas is not None:
@@ -38,13 +48,10 @@ def terbilang(angka):
                                      terbilang(angka % batas[0]) if angka % batas[0] > 0 else "")\
                 .replace("satu puluh", "sepuluh")\
                 .replace("satu ratus", "seratus")\
-                .replace("satu ribu", "seribu")
+                .replace("satu ribu", "seribu").strip()
         else:
             return ""
 
-
 if __name__ == '__main__':
-    tests = (0, 10, 11, 19, 29, 99, 399, 500, 702, 1000, 2000, 372159, 1000000, 2000000, 12759247, 3000000000,
-             79296467392, 932658259587, 1000000000000, 716005407201000, 857689000128256, 342857689000128256)
-    for x in tests:
-        print(x, terbilang(x))
+    import doctest
+    doctest.testmod()
