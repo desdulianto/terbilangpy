@@ -33,7 +33,7 @@ def terbilang(angka):
         return "{} belas".format(satuan[angka % 10]).replace("satu belas", "sebelas")
     else:
         pos, batas = find_first(lambda x: angka >= x[1][0], enumerate(suffix))
-        if batas != None:
+        if batas is not None:
             return "{} {} {}".format(terbilang(int(angka / batas[0])), suffix[pos][1],
                                      terbilang(angka % batas[0]) if angka % batas[0] > 0 else "")\
                 .replace("satu puluh", "sepuluh")\
@@ -44,7 +44,7 @@ def terbilang(angka):
 
 
 if __name__ == '__main__':
-    tests = (0, 10, 11, 19, 29, 99, 399, 500, 702, 1000, 2000, 372159, 1000000, 2000000, 12759247, 3000000000, 79296467392,
-             932658259587, 1000000000000, 716005407201000, 857689000128256, 342857689000128256)
+    tests = (0, 10, 11, 19, 29, 99, 399, 500, 702, 1000, 2000, 372159, 1000000, 2000000, 12759247, 3000000000,
+             79296467392, 932658259587, 1000000000000, 716005407201000, 857689000128256, 342857689000128256)
     for x in tests:
         print(x, terbilang(x))
