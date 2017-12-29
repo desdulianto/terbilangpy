@@ -15,13 +15,16 @@ def find_first(predicate, items):
     :param items: list items
     :return: tuple (pos, item) jika tidak ditemukan (-1, None)
     """
-    for i, item in enumerate(items):
-        if predicate(item):
-            return i, item
-    return -1, None
+    hasil = list(filter(predicate, items))
+    return hasil[0] if len(hasil) > 0 else None
 
 
 def terbilang(angka):
+    """
+    mengembalikan string terbilang dari angka
+    :param angka: integer input untuk menghasilkan terbilang
+    :return: string terbilang
+    """
     if angka < 0:
         return "negatif " + terbilang(abs(angka))
     elif 0 <= angka <= 9:
@@ -29,7 +32,7 @@ def terbilang(angka):
     elif 11 <= angka <= 19:
         return "{} belas".format(satuan[angka % 10]).replace("satu belas", "sebelas")
     else:
-        pos, batas = find_first(lambda x: angka >= x[0], suffix)
+        pos, batas = find_first(lambda x: angka >= x[1][0], enumerate(suffix))
         if batas != None:
             return "{} {} {}".format(terbilang(int(angka / batas[0])), suffix[pos][1],
                                      terbilang(angka % batas[0]) if angka % batas[0] > 0 else "")\
